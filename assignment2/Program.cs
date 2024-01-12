@@ -1,8 +1,15 @@
-﻿
+
 using System;
 
 namespace banking
+
 {
+    class Lessbalanceexception:ApplicationException{
+        public Lessbalanceexception(string message):base(message){}
+    }
+    class Noaccountfound:ApplicationException{
+        public Noaccountfound(string message):base(message){}
+    }
     class BankRepository : iBankRepository
     {
         List<SBAccount> l1=new List<SBAccount>();
@@ -20,7 +27,8 @@ namespace banking
                     return;
                 }
             }
-            Console.WriteLine("No account found");
+            throw new Noaccountfound("no account found");
+            
         }
 
         public SBAccount GetAccountDetails(int accno)
@@ -30,8 +38,7 @@ namespace banking
                     return item;
                 }
             }
-            Console.WriteLine("No account found");
-            return null;
+            throw new Noaccountfound("no account found");
         }
 
         public List<SBAccount> GetAllAccounts()
@@ -61,8 +68,8 @@ namespace banking
              foreach(SBAccount item in l1){
                 if(item.AccountNumber==accno){
                     if(item.CurrentBalance<amt){
-                        Console.WriteLine("Not sufficient balance");
-                        return;
+                        throw new Lessbalanceexception("not sufficient balance");
+                        
                     }
                     else{
 
@@ -77,7 +84,7 @@ namespace banking
                     }
                 }
             }
-            Console.WriteLine("No account found");
+             throw new Noaccountfound("no account found");
         }
     }
 
