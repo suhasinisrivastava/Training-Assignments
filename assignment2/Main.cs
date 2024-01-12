@@ -27,6 +27,7 @@ namespace banking{
                 else if(key==2){
                     Console.WriteLine("enter account number");
                     int acc=Convert.ToInt32(Console.ReadLine());
+                    try{
                     SBAccount sb= repo.GetAccountDetails(acc);
                     if(sb==null){
                         continue;
@@ -35,6 +36,10 @@ namespace banking{
                     Console.WriteLine("Customer Name"+sb.CustomerName);
                     Console.WriteLine("Customer Address"+sb.CustomerAddress);
                     Console.WriteLine("Current Balance"+sb.CurrentBalance);
+                    }
+                    catch(Exception e){
+                        Console.WriteLine(e.Message);
+                    }
                 }
                 else if(key==3){
                     Console.WriteLine("enter account number");
@@ -42,14 +47,24 @@ namespace banking{
                     int acc=Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("enter amount");
                     int amt=Convert.ToInt32(Console.ReadLine());
+                    try{
                     repo.DepositAmount(acc,amt);
+                    }
+                    catch(Exception e){
+                        Console.WriteLine(e.Message);
+                    }
                 }
                 else if(key==4){
                     Console.WriteLine("enter account number");
                     int acc=Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("enter amount");
                     int amt=Convert.ToInt32(Console.ReadLine());
+                    try{
                     repo.WithdrawAmount(acc,amt);
+                    }
+                    catch(Exception e){
+                        Console.WriteLine(e.Message);
+                    }
                 }
                 else if(key==5){
                     List<SBTransaction> temp=new List<SBTransaction>();
