@@ -22,7 +22,7 @@ namespace banking
                     Random rnd = new Random();
                     int num = rnd.Next();   
                     DateTime currentDateTime = DateTime.Now;
-                    l2.Add(new SBTransaction(num,currentDateTime,accno,item.CurrentBalance,"Deposit"));
+                    l2.Add(new SBTransaction(num,currentDateTime,accno,amt,"Deposit"));
                     Console.WriteLine("amount deposited succesfully");
                     return;
                 }
@@ -78,7 +78,7 @@ namespace banking
                     Random rnd = new Random();
                     int num = rnd.Next();   
                     DateTime currentDateTime = DateTime.Now;
-                    l2.Add(new SBTransaction(num,currentDateTime,accno,item.CurrentBalance,"Withdraw"));
+                    l2.Add(new SBTransaction(num,currentDateTime,accno,amt,"Withdraw"));
                     Console.WriteLine("amount withdrawn succesfully");
                     return;
                     }
